@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="log-in-div">
+    <form id="log-in">
+        <div class="form-group">
+            <label for="userEmail">Email address</label>
+            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userPassword" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+<div id="user-page">
+    <h4>Welcome to user page</h4>
+</div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB_2wZPoVDelSI_2zOHbo8SQRmfbDUtx70",
+            authDomain: "train-scheduler-b5840.firebaseapp.com",
+            databaseURL: "https://train-scheduler-b5840.firebaseio.com",
+            projectId: "train-scheduler-b5840",
+            storageBucket: "train-scheduler-b5840.appspot.com",
+            messagingSenderId: "1036251115870"
+        };
+        firebase.initializeApp(config);
+        var dataRef = firebase.database();
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>
