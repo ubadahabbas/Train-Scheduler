@@ -2,9 +2,7 @@
 $(function () {
 
     var user = firebase.auth().currentUser;
-$("#show-trains").on("click",function(){
-    
-})
+
 if (user) {
     $("#log-in-div").hide();
     $("#user-page").show();
@@ -61,4 +59,6 @@ $("#sign-out").on("click",function(){
         // An error happened.
       });
 })
+
+
 });

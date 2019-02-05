@@ -15,13 +15,35 @@
 
 <body>
     <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-            featured content or information.</p>
+        <h1 class="text-center">CHOO CHOO. CHEE CHEE.</h1>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" id="show-trains" role="button">Show Trains</a>
     </div>
+    <div class="container" class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title current"><strong>Trains Schedule</strong></h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover" >
+                    <thead>
+                        <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>First Train </th>
+                            <th>Frequency in minutes</th>
+                            <th>Minutes to arrival</th>
+                        </tr>
+                    </thead>
+                    <tbody id='trains'>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
     <div id="log-in-div" class="container">
         <form id="log-in">
 
@@ -46,9 +68,17 @@
                     <label for="train-des">Destination</label>
                     <input type="text" class="form-control" id="train-des" placeholder="Enter Destination">
                 </div>
+                <div class="form-group">
+                    <label for="train-time">First Train Time</label>
+                    <input type="text" class="form-control" id="train-time" placeholder="Enter Time 12:00">
+                </div>
+                <div class="form-group">
+                    <label for="train-freq">Frequency</label>
+                    <input type="text" class="form-control" id="train-freq" placeholder="Enter Frequency">
+                </div>
 
             </form>
-            <button class="btn btn-primary">Add Train</button>
+            <button id="add-train" class="btn btn-primary">Add Train</button>
         </div>
         <hr>
         <button class="btn btn-primary" id="sign-out">log out</button>
@@ -58,9 +88,6 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        var randomDate = "02/23/1999";
-        var randomFormat = "MM/DD/YYYY";
-        var convertedDate = moment(randomDate, randomFormat);
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyB_2wZPoVDelSI_2zOHbo8SQRmfbDUtx70",
@@ -71,7 +98,44 @@
             messagingSenderId: "1036251115870"
         };
         firebase.initializeApp(config);
-        // var dataRef = firebase.database();
+        var dataRef = firebase.database();
+
+
+        $("#add-train").on("click", function () {
+            event.preventDefault();
+
+            var name = $("#train-name").val().trim();
+            var time = moment($("#train-time").val().trim(), "HH:mm").format("HH:mm");
+            var des = $("#train-des").val().trim();
+            var freq = $("#train-freq").val().trim();
+
+            var newTrain = {
+                name: name,
+                time: time,
+                des: des,
+                freq: freq
+            }
+            dataRef.ref().push(newTrain);
+        });
+
+        dataRef.ref().on("child_added", function (snapshot) {
+            console.log(snapshot.val());
+
+            var train = snapshot.val().name;
+            var destination = snapshot.val().des;
+            var firstTrain = snapshot.val().time;
+            var frequency = snapshot.val().freq;
+
+            var currentTime = moment().format("HH:mm");
+            console.log(currentTime)
+            var firstTConv = moment(firstTrain, "HH:mm");
+            var timeDiff = moment().diff(moment(firstTConv), "minutes");
+            var timeLeft = timeDiff % frequency;
+
+            var inMin = frequency - timeLeft;
+            var comingTrain = moment().add(inMin, "minutes").format("HH:mm");
+            $("#trains").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +comingTrain + "</td><td>" + frequency + "</td><td>" + inMin + "</td></tr>");
+        })
     </script>
     <script src="app.js"></script>
 </body>
