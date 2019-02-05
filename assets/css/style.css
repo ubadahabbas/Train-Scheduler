@@ -1,0 +1,14 @@
+.jumbotron{
+    background-image: url("../images/background.jpeg");
+    height: 400px;
+    color: beige;
+    opacity: 0.9;
+}
+
+body{
+    background-color: rgba(219, 167, 36, 0.623);
+    
+}
+h3{
+    text-align: center;
+}

@@ -8,7 +8,7 @@
     <title>Train Scheduler</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 
 </head>
@@ -53,11 +53,12 @@
             <label for="userPassword">Password</label>
             <input type="password" id="userPassword" class="form-control" placeholder="Password">
         </form>
-        <button class="btn btn-primary" id="log-in-button"> Admin Login</button>
+        <br>
+        <button class="btn btn-secondary" id="log-in-button"> Admin Login</button>
     </div>
 
     <div id="user-page" class="container">
-        <h4>Welcome to Admin Page</h4>
+        <h4>Add a train</h4>
         <div id="train-form">
             <form>
                 <div class="form-group">
@@ -78,10 +79,11 @@
                 </div>
 
             </form>
-            <button id="add-train" class="btn btn-primary">Add Train</button>
+            <button id="add-train" class="btn btn-secondary">Add Train</button>
         </div>
         <hr>
-        <button class="btn btn-primary" id="sign-out">log out</button>
+        <button class="btn btn-secondary" id="sign-out">log out</button>
+        <small  class="form-text text-muted">Log in to add a train.</small>
     </div>
 
 
@@ -137,7 +139,7 @@
             $("#trains").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +comingTrain + "</td><td>" + frequency + "</td><td>" + inMin + "</td></tr>");
         })
     </script>
-    <script src="app.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 
 </html>
