@@ -8,29 +8,59 @@
     <title>Train Scheduler</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
 </head>
 
 <body>
-    <div id="log-in-div">
-    <form id="log-in">
-        <div class="form-group">
-            <label for="userEmail">Email address</label>
-            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="userPassword">Password</label>
-            <input type="password" class="form-control" id="userPassword" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+            featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" id="show-trains" role="button">Show Trains</a>
+    </div>
+    <div id="log-in-div" class="container">
+        <form id="log-in">
 
-<div id="user-page">
-    <h4>Welcome to user page</h4>
-</div>
-    <script src="https://code.jquery.com/jquery.js"></script>
+            <label for="userEmail">Email address</label>
+            <input type="text" id="userEmail" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+
+            <label for="userPassword">Password</label>
+            <input type="password" id="userPassword" class="form-control" placeholder="Password">
+        </form>
+        <button class="btn btn-primary" id="log-in-button"> Admin Login</button>
+    </div>
+
+    <div id="user-page" class="container">
+        <h4>Welcome to Admin Page</h4>
+        <div id="train-form">
+            <form>
+                <div class="form-group">
+                    <label for="train-name">Train Name</label>
+                    <input type="text" class="form-control" id="train-name" placeholder="Enter train">
+                </div>
+                <div class="form-group">
+                    <label for="train-des">Destination</label>
+                    <input type="text" class="form-control" id="train-des" placeholder="Enter Destination">
+                </div>
+
+            </form>
+            <button class="btn btn-primary">Add Train</button>
+        </div>
+        <hr>
+        <button class="btn btn-primary" id="sign-out">log out</button>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
+        var randomDate = "02/23/1999";
+        var randomFormat = "MM/DD/YYYY";
+        var convertedDate = moment(randomDate, randomFormat);
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyB_2wZPoVDelSI_2zOHbo8SQRmfbDUtx70",
@@ -41,7 +71,7 @@
             messagingSenderId: "1036251115870"
         };
         firebase.initializeApp(config);
-        var dataRef = firebase.database();
+        // var dataRef = firebase.database();
     </script>
     <script src="app.js"></script>
 </body>
